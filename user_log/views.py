@@ -11,11 +11,11 @@ from django.views import generic
 
 
 # class Login_View(generic.DetailView):
-#     template_name = "polls/detail.html"
+#     template_name = "user_log/detail.html"
 
 
 # class Sign_Up_View(generic.DetailView):
-#     template_name = "polls/results.html"
+#     template_name = "user_log/results.html"
 
 def login(request):
     return render(request, "user_log/login.html")
