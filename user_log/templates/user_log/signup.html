@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md">
+        <div class="text-xl font-medium text-black text-center">Signup</div>
+        <form class="mt-4">
+            <div>
+                <label class="block" for="username">Username</label>
+                <input type="text" id="username" placeholder="Choose a username" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
+            </div>
+            <div class="mt-4">
+                <label class="block" for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
+            </div>
+            <div class="mt-4">
+                <label class="block" for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
+            </div>
+            <div class="mt-4">
+                <label class="block" for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
+            </div>
+            <div class="mt-8">
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-500">Signup</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
