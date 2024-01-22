@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+
 
 
 def user_login(request):
@@ -32,4 +31,30 @@ def user_login(request):
 
 
 def signup(request):
-    return render(request, "user_log/signup.html")
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if password == confirm_password:
+            # Check if the user already exists
+            if not User.objects.filter(username=username).exists():
+                if not User.objects.filter(email=email).exists():
+                    # Create a new user
+                    user = User.objects.create_user(username, email, password)
+                    user.save()
+
+                    # Log the user in and redirect them
+                    login(request, user)
+                    return redirect('generator:generator')  # Redirect to a home page or dashboard
+
+                else:
+                    messages.error(request, 'Email is already registered.')
+            else:
+                messages.error(request, 'Username is already taken.')
+        else:
+            messages.error(request, 'Passwords do not match.')
+
+    return render(request, 'user_log/signup.html')
+
