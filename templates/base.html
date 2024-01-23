@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-4">
+                    <!-- logo -->
+                    <div>
+                        <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                            <svg class="h-6 w-6 mr-1 text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927a9 9 0 113.45 5.617" />
+                            </svg>
+                            <span class="font-bold">Your Brand</span>
+                        </a>
+                    </div>
+                    <!-- primary nav -->
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Home</a>
+                        <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Services</a>
+                        <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">About</a>
+                        <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Contact</a>
+                    </div>
+                </div>
+                <!-- secondary nav -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#" class="py-5 px-3">Login</a>
+                    <a href="#" class="py-2 px-3 bg-purple-600 text-white rounded hover:bg-purple-500">Sign Up</a>
+                </div>
+                <!-- mobile button goes here -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto">
+        {% block content %}
+        <!-- Page specific content will go here -->
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    <!-- Include Navbar Here -->
+{% extends "base.html" %}
 
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
     <div class="flex items-center justify-center min-h-screen">
         <div class="max-w-md w-full bg-white rounded-lg shadow-md p-6">
             <div class="text-center">
@@ -48,5 +42,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

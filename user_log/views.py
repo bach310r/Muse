@@ -24,7 +24,7 @@ def user_login(request):
             return redirect('generator:generator')  # Redirect to a home page or dashboard
         else:
             # Invalid credentials, handle accordingly
-            return render(request, 'user_log/login.html', {'error': 'Invalid username or password'})
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
     
     else:
         # If not a POST request, render the login template
