@@ -56,4 +56,4 @@ def generator(request):
         response['Content-Disposition'] = 'attachment; filename="your_document.pdf"'
         return response
 
-    return render(request, 'generator/generator.html')
+    return render(request, 'generator.html')

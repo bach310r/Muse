@@ -28,7 +28,7 @@ def user_login(request):
     
     else:
         # If not a POST request, render the login template
-        return render(request, 'user_log/login.html')
+        return render(request, 'login.html')
 
 
 
@@ -58,7 +58,7 @@ def signup(request):
         else:
             messages.error(request, 'Passwords do not match.')
 
-    return render(request, 'user_log/signup.html')
+    return render(request, 'signup.html')
 
 
 @login_required
@@ -77,4 +77,4 @@ def profile(request):
             else:
                 messages.error(request, 'Password is incorrect.')
 
-    return render(request, 'user_log/profile.html')
+    return render(request, 'profile.html')
