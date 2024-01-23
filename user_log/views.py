@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -58,3 +60,21 @@ def signup(request):
 
     return render(request, 'user_log/signup.html')
 
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        # Assuming you have a 'delete_account' button in your form
+        if 'delete_account' in request.POST:
+            password = request.POST.get('password')
+            user = authenticate(username=request.user.username, password=password)
+            
+            if user is not None:
+                user.delete()
+                messages.success(request, 'Your account has been deleted.')
+                return redirect('user_log:user_login')  # Redirect to home or any other appropriate page
+
+            else:
+                messages.error(request, 'Password is incorrect.')
+
+    return render(request, 'user_log/profile.html')
