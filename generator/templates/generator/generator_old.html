@@ -8,20 +8,19 @@
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <div class="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md">
-        <div class="text-xl font-medium text-black text-center">Chapbook Generator</div>
-        <form class="mt-4" method="post" action="{% url 'generator:generator' %}"> <!-- Replace 'your_form_url_name' with the actual URL name -->
-            {% csrf_token %}
+        <div class="text-xl font-medium text-black text-center">Your Form</div>
+        <form class="mt-4">
             <div>
                 <label class="block" for="title">Title</label>
-                <textarea id="title" name="title" placeholder="Enter title" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500" rows="3"></textarea>
+                <input type="text" id="title" placeholder="Enter title" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
             </div>
             <div class="mt-4">
                 <label class="block" for="cover">Cover</label>
-                <textarea id="cover" name="cover" placeholder="Enter cover info" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500" rows="3"></textarea>
+                <input type="text" id="cover" placeholder="Enter cover info" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
             </div>
             <div class="mt-4">
                 <label class="block" for="content">Content</label>
-                <textarea id="content" name="content" placeholder="Enter content" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500" rows="5"></textarea>
+                <input type="text" id="content" placeholder="Enter content" class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
             </div>
             <div class="mt-8">
                 <button type="submit" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded hover:bg-purple-500">Submit</button>
