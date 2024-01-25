@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
+from django.views.decorators.http import require_POST
+
 
 
 def user_login(request):
@@ -65,6 +67,11 @@ def signup(request):
 
 @login_required
 def profile(request):
+    return render(request, 'profile.html')
+
+@login_required
+@require_POST
+def delete_account(request):
     if request.method == 'POST':
         # Assuming you have a 'delete_account' button in your form
         if 'delete_account' in request.POST:

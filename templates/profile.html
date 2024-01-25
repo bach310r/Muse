@@ -44,7 +44,7 @@
                 </form>
 
                 <!-- Delete Account Form -->
-                <form method="post" action="{% url 'user_log:profile' %}" class="mt-8">
+                <form method="post" action="{% url 'user_log:delete_account' %}" class="mt-8">
                     {% csrf_token %}
                     <label for="password" class="text-lg text-gray-700">Confirm Password:</label>
                     <input type="password" name="password" required class="mt-1 p-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full focus:bg-white focus:border-purple-500">
