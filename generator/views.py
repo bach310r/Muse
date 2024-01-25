@@ -10,7 +10,6 @@ import requests
 
 
 
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 
 def get_image_url(cover_prompt):
@@ -73,6 +72,8 @@ def generator(request):
 
         pdf.add_page()
         pdf.set_text_color(0, 0, 0)
+        pdf.set_left_margin(20)  # Set a larger left margin, for example, 30 mm
+        pdf.set_auto_page_break(auto=True, margin=15)
         pdf.set_font("Helvetica", size=24, style='B')
 
         pdf.cell(0, 10, title, 0, 1, 'C')  # Title
