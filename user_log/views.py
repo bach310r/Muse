@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 
 
-
-
 def user_login(request):
     if request.method == 'POST':
         # Get username and password from request
@@ -17,7 +15,6 @@ def user_login(request):
         password = request.POST['password']
         # Authenticate the user
         user = authenticate(request, username=username, password=password)
-        print(user)
         if user is not None:
             # User is authenticated, log them in and redirect to a new page
             print(user)
