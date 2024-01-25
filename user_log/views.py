@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -80,5 +81,43 @@ def profile(request):
 
             else:
                 messages.error(request, 'Password is incorrect.')
+
+    return render(request, 'profile.html')
+
+
+@login_required
+def update_email(request):
+    if request.method == 'POST':
+        new_email = request.POST.get('email')
+        if new_email:
+            request.user.email = new_email
+            request.user.save()
+            messages.success(request, 'Your email has been updated.')
+            return redirect('user_log:profile')  # Redirect to profile or some other page
+        else:
+            messages.error(request, 'Please enter a valid email.')
+
+    return render(request, 'profile.html')
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        if not request.user.check_password(old_password):
+            messages.error(request, 'Your old password was entered incorrectly.')
+            return redirect('user_log:profile')
+
+        if new_password1 and new_password1 == new_password2:
+            request.user.set_password(new_password1)
+            request.user.save()
+            update_session_auth_hash(request, request.user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('user_log:profile')
+        else:
+            messages.error(request, 'New passwords do not match.')
 
     return render(request, 'profile.html')
