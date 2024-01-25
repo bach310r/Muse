@@ -64,11 +64,21 @@ def generator(request):
         # Create a PDF
         pdf = FPDF()
         pdf.add_page()
+        pdf.image('temp_image.png', x=0, y=0, w=pdf.w, h=pdf.h)
+        pdf.set_text_color(255, 255, 255)
+
+        pdf.set_font("Helvetica", size=62, style='B')
+        pdf.set_y((pdf.h - 10) / 2)
+        pdf.cell(0, 10, title, 0, 1, 'C')  # Centered title
+
+        pdf.add_page()
+        pdf.set_text_color(0, 0, 0)
+        pdf.set_font("Helvetica", size=24, style='B')
+
+        pdf.cell(0, 10, title, 0, 1, 'C')  # Title
+        pdf.ln(10) 
+        
         pdf.set_font("Helvetica", size=12)
-        pdf.cell(200, 10, txt=title, ln=True, align='C')
-
-        pdf.image('temp_image.png', x=10, y=20, w=100)
-
         pdf.multi_cell(0, 10, txt=body_text)
 
         # Output the PDF directly to the browser
