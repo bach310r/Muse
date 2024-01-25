@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -29,6 +29,10 @@ def user_login(request):
     else:
         # If not a POST request, render the login template
         return render(request, 'login.html')
+
+def user_logout(request):
+    logout(request)
+    return redirect('user_log:user_login')  # Redirect to login page or home page after logout
 
 
 
