@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Submission History{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="mb-4">
+            <div class="text-xl font-medium text-black text-center">Submission History</div>
+        </div>
+        <div class="flow-root">
+            <ul class="divide-y divide-gray-200">
+                {% for submission in submissions %}
+                <li class="py-4">
+                    <h3 class="text-md font-semibold text-purple-600">{{ submission.title }}</h3>
+                    <p class="mt-1 text-sm text-gray-500">Cover: {{ submission.cover_prompt }}</p>
+                    <p class="mt-1 text-sm text-gray-500">Content: {{ submission.content_prompt }}</p>
+                    <p class="mt-1 text-sm text-gray-500">Submitted on: {{ submission.timestamp|date:"F d, Y H:i" }}</p>
+                </li>
+                {% empty %}
+                <li class="py-4">
+                    <p class="text-sm text-center text-gray-500">No submissions found.</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

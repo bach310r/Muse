@@ -41,7 +41,7 @@ def generator(request):
         content_text = request.POST.get('content')
 
         # Save the submission details to the database
-        submission = Submission(title=title, cover_prompt=cover_prompt, content_prompt=content_text)
+        submission = Submission(user=request.user, title=title, cover_prompt=cover_prompt, content_prompt=content_text)
         submission.save()
 
         cover_img_url = get_image_url(cover_prompt)
@@ -79,3 +79,10 @@ def generator(request):
         return response
 
     return render(request, 'generator.html')
+
+
+@login_required
+def user_history(request):
+    submissions = Submission.objects.filter(user=request.user).order_by('-timestamp')
+    print(submissions)
+    return render(request, 'history.html', {'submissions': submissions})
