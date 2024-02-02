@@ -22,6 +22,7 @@
                 <div class="md:flex items-center space-x-1">
                     {% if user.is_authenticated %}
                         <a href="{% url 'user_log:profile' %}" class="py-5 px-3">Profile</a>
+                        <a href="{% url 'generator:user_history' %}" class="py-5 px-3">History</a>
                         <a href="{% url 'user_log:logout' %}" class="py-2 px-3 bg-red-600 text-white rounded hover:bg-red-500">Logout</a>
                     {% else %}
                         <a href="{% url 'user_log:user_login' %}" class="py-5 px-3">Login</a>
