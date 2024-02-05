@@ -1,8 +1,6 @@
 from django.urls import path
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import path
-
-
 from . import views
 
 app_name = 'user_log'
@@ -14,6 +12,4 @@ urlpatterns = [
     path('update-email/', views.update_email, name='update_email'),
     path('change-password/', views.change_password, name='change_password'),
     path('delete-account/', views.delete_account, name='delete_account'),
-
-
 ]

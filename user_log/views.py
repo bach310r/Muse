@@ -8,32 +8,25 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.views.decorators.http import require_POST
 
-
-
 def user_login(request):
     if request.method == 'POST':
-        # Get username and password from request
         username = request.POST['username']
         password = request.POST['password']
-        # Authenticate the user
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            # User is authenticated, log them in and redirect to a new page
             print(user)
             login(request, user)
-            return redirect('generator:generator')  # Redirect to a home page or dashboard
+            return redirect('generator:generator') 
         else:
-            # Invalid credentials, handle accordingly
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     
     else:
-        # If not a POST request, render the login template
         return render(request, 'login.html')
+
 
 def user_logout(request):
     logout(request)
-    return redirect('user_log:user_login')  # Redirect to login page or home page after logout
-
+    return redirect('user_log:user_login') 
 
 
 def signup(request):
@@ -44,16 +37,12 @@ def signup(request):
         confirm_password = request.POST['confirm_password']
 
         if password == confirm_password:
-            # Check if the user already exists
             if not User.objects.filter(username=username).exists():
                 if not User.objects.filter(email=email).exists():
-                    # Create a new user
                     user = User.objects.create_user(username, email, password)
                     user.save()
-
-                    # Log the user in and redirect them
                     login(request, user)
-                    return redirect('generator:generator')  # Redirect to a home page or dashboard
+                    return redirect('generator:generator') 
 
                 else:
                     messages.error(request, 'Email is already registered.')
@@ -69,11 +58,11 @@ def signup(request):
 def profile(request):
     return render(request, 'profile.html')
 
+
 @login_required
 @require_POST
 def delete_account(request):
     if request.method == 'POST':
-        # Assuming you have a 'delete_account' button in your form
         if 'delete_account' in request.POST:
             password = request.POST.get('password')
             user = authenticate(username=request.user.username, password=password)
@@ -81,7 +70,7 @@ def delete_account(request):
             if user is not None:
                 user.delete()
                 messages.success(request, 'Your account has been deleted.')
-                return redirect('user_log:user_login')  # Redirect to home or any other appropriate page
+                return redirect('user_log:user_login')
 
             else:
                 messages.error(request, 'Password is incorrect.')
@@ -97,7 +86,7 @@ def update_email(request):
             request.user.email = new_email
             request.user.save()
             messages.success(request, 'Your email has been updated.')
-            return redirect('user_log:profile')  # Redirect to profile or some other page
+            return redirect('user_log:profile') 
         else:
             messages.error(request, 'Please enter a valid email.')
 
@@ -118,7 +107,7 @@ def change_password(request):
         if new_password1 and new_password1 == new_password2:
             request.user.set_password(new_password1)
             request.user.save()
-            update_session_auth_hash(request, request.user)  # Important!
+            update_session_auth_hash(request, request.user) 
             messages.success(request, 'Your password was successfully updated!')
             return redirect('user_log:profile')
         else:
