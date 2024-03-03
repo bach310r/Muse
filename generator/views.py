@@ -8,6 +8,8 @@ import os
 import time
 import requests
 from .models import Submission
+from django.conf import settings
+
 
 def get_image_url(cover_prompt):
     client = OpenAI()
@@ -46,7 +48,9 @@ def generator(request):
 
         cover_img_url = get_image_url(cover_prompt)
         response = requests.get(cover_img_url)
-        with open('temp_image.png', 'wb') as f:
+        image_path = os.path.join(settings.MEDIA_ROOT, 'temp_image.png')
+        print(f"{image_path} is here")
+        with open(image_path, 'wb') as f:
             f.write(response.content)
 
         body_text = generate_text_content(content_text=content_text)
@@ -54,7 +58,7 @@ def generator(request):
         # Create a PDF
         pdf = FPDF()
         pdf.add_page()
-        pdf.image('temp_image.png', x=0, y=0, w=pdf.w, h=pdf.h)
+        pdf.image(image_path, x=0, y=0, w=pdf.w, h=pdf.h)
         pdf.set_text_color(255, 255, 255)
 
         pdf.set_font("Helvetica", size=62, style='B')
